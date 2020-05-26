@@ -1,6 +1,13 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import ReactGA from "react-ga";
+import "./App.css";
+
+function initializeReactGA() {
+  ReactGA.initialize("UA-161204876-4");
+  ReactGA.pageview("/homepage");
+}
+initializeReactGA();
 
 function App() {
   return (
