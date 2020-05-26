@@ -1,6 +1,7 @@
 import React from "react";
-import logo from "./logo.svg";
 import ReactGA from "react-ga";
+import Typography from "@material-ui/core/Typography";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./App.css";
 
 function initializeReactGA() {
@@ -12,22 +13,42 @@ initializeReactGA();
 function App() {
   return (
     <div className="App">
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      />
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Router>
+          <div>
+            <Switch>
+              <Route path="/:id" render={(props) => <UserPage {...props} />} />
+              <Route path="/">
+                <Typography variant="h1" component="h2" gutterBottom>
+                  Is it a scam?
+                </Typography>
+                <Typography variant="h2" gutterBottom>
+                  Yes
+                </Typography>
+              </Route>
+            </Switch>
+          </div>
+        </Router>
       </header>
     </div>
   );
 }
 
 export default App;
+
+function UserPage(props) {
+  return (
+    <div>
+      <Typography variant="h2" component="h2" gutterBottom>
+        Is {props.match.params.id} a scam?
+      </Typography>
+      <Typography variant="h1" gutterBottom>
+        Yes
+      </Typography>
+    </div>
+  );
+}
